@@ -35,7 +35,7 @@ Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
  * 1 <= m, n <= 200
  * -231 <= matrix[i][j] <= 231 - 1
 
- 
+Â 
 
 Follow up:
 
@@ -98,3 +98,55 @@ for (int i = 0; i < n; i++) {
 };
   ```
   
+
+ 
+
+  #### approach 2: 
+
+  ```  
+
+ class Solution {
+
+public:
+
+    void setZeroes(vector<vector<int>>& matrix) {
+
+        int n = matrix.size();
+
+        int m = matrix[0].size();
+
+        vector<bool> rows(n, false), cols(m, false);
+
+        for( int i = 0 ; i < n ; i++){
+
+            for( int j = 0 ; j < m ; j++){
+
+                if(matrix[i][j] == 0 ){
+
+                    rows[i] = true;
+
+                    cols[j] = true;
+
+                }
+
+            }
+
+        }
+
+for (int i = 0; i < n; i++) {
+
+        for (int j = 0; j < m; j++) {
+
+            if (rows[i] || cols[j])
+
+                matrix[i][j] = 0;
+
+        }
+
+    }
+
+    }
+
+}; 
+
+ ``` 
