@@ -2,7 +2,7 @@
   
   ## Problem Description
   
-  Can you solve this real interview question? Merge Intervals - Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
+  Can you solve this real interview question? Merge Intervals - Given an arrayÂ of intervalsÂ where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
   
   ### Examples:
   ```
@@ -63,3 +63,33 @@ public:
 };
   ```
   
+
+ 
+  #### approach 2: 
+
+ ``` C++``` 
+  ```  
+
+ class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        int n = intervals.size();
+        sort(intervals.begin(),intervals.end());
+        vector<vector<int>> res;
+        res.push_back(intervals[0]);
+
+    for (int i = 1; i < n; i++) {
+        vector<int>& last = res.back();
+        vector<int>& curr = intervals[i]; 
+        if (curr[0] <= last[1]) 
+            last[1] = max(last[1], curr[1]);
+        else 
+            res.push_back(curr);
+    }
+
+    return res;
+}
+        
+}; 
+
+ ``` 
