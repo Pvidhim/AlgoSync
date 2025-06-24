@@ -38,7 +38,7 @@ Output: [1]
  * 0 <= Node.val <= 100
  * 1 <= n <= sz
 
- 
+Â 
 
 Follow up: Could you do this in one pass?
   
@@ -89,3 +89,47 @@ public:
 };
   ```
   
+
+ 
+  #### approach 2: 
+
+ ``` C++``` 
+  ```  
+
+ /**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if(head->next == NULL){
+        return NULL ;
+       }
+       ListNode* dummy = new ListNode(0, head);
+       ListNode* slowptr = dummy;
+       ListNode* fastptr = dummy;
+       for(int i = 0 ; i < n ; i++){
+        fastptr = fastptr->next;
+       }
+
+       while(fastptr->next != NULL){
+        fastptr = fastptr->next;
+        slowptr = slowptr->next;
+       }
+       
+       ListNode* delnode = slowptr->next;
+       slowptr->next = slowptr->next->next;
+       delete delnode;
+       return dummy->next;
+
+    }
+}; 
+
+ ``` 
